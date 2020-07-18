@@ -1,1 +1,0 @@
-cmd_/root/anti_RE/chk_ptrace/bypass/bypass.ko := ld -r -m elf_x86_64  -z max-page-size=0x200000  --build-id  -T /usr/src/linux-headers-5.6.0-kali2-common/scripts/module-common.lds -o /root/anti_RE/chk_ptrace/bypass/bypass.ko /root/anti_RE/chk_ptrace/bypass/bypass.o /root/anti_RE/chk_ptrace/bypass/bypass.mod.o;  true

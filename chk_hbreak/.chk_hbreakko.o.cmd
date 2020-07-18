@@ -1,1 +1,0 @@
-cmd_/root/anti_RE/chk_hbreak/chk_hbreakko.o := ld -m elf_x86_64  -z max-page-size=0x200000    -r -o /root/anti_RE/chk_hbreak/chk_hbreakko.o /root/anti_RE/chk_hbreak/chk_hbreak.o /root/anti_RE/chk_hbreak/../headers/headers.o
