@@ -1,0 +1,1 @@
+cmd_/root/anti_RE/hide_proc/anti/hide_procko.o := ld -m elf_x86_64  -z max-page-size=0x200000    -r -o /root/anti_RE/hide_proc/anti/hide_procko.o /root/anti_RE/hide_proc/anti/hide_proc.o /root/anti_RE/hide_proc/anti/../../headers/headers.o

@@ -1,0 +1,1 @@
+cmd_/root/anti_RE/hide_proc/anti/hide_procko.ko := ld -r -m elf_x86_64  -z max-page-size=0x200000  --build-id  -T /usr/src/linux-headers-5.6.0-kali2-common/scripts/module-common.lds -o /root/anti_RE/hide_proc/anti/hide_procko.ko /root/anti_RE/hide_proc/anti/hide_procko.o /root/anti_RE/hide_proc/anti/hide_procko.mod.o;  true

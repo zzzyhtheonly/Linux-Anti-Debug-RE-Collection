@@ -1,0 +1,1 @@
+cmd_/root/anti_RE/shut_other_modules/shut_modulesko.o := ld -m elf_x86_64  -z max-page-size=0x200000    -r -o /root/anti_RE/shut_other_modules/shut_modulesko.o /root/anti_RE/shut_other_modules/shut_modules.o

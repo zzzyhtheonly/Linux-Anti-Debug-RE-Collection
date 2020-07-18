@@ -1,0 +1,1 @@
+cmd_/root/anti_RE/hide_proc/anti/hide_procko.mod := { echo  /root/anti_RE/hide_proc/anti/hide_proc.o /root/anti_RE/hide_proc/anti/../../headers/headers.o; echo; } > /root/anti_RE/hide_proc/anti/hide_procko.mod

@@ -1,0 +1,1 @@
+cmd_/root/anti_RE/chk_hbreak/chk_hbreakko.ko := ld -r -m elf_x86_64  -z max-page-size=0x200000  --build-id  -T /usr/src/linux-headers-5.6.0-kali2-common/scripts/module-common.lds -o /root/anti_RE/chk_hbreak/chk_hbreakko.ko /root/anti_RE/chk_hbreak/chk_hbreakko.o /root/anti_RE/chk_hbreak/chk_hbreakko.mod.o;  true
