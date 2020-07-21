@@ -8,6 +8,7 @@ static long my_pid = 0;
 module_param(my_pid, long, 0);
 
 static struct task_struct *th = NULL;
+static int is_exit = 0;
 
 static int callback_fn(void *data)
 {
@@ -19,6 +20,7 @@ static int callback_fn(void *data)
 	if(NULL == data)
 	{
 		printk("No target to check, exit!\n");
+		is_exit = 1;
 		return 0;
 	}
 
@@ -27,40 +29,45 @@ static int callback_fn(void *data)
 
 	while(!kthread_should_stop())
 	{
+		#if 0
 		if(signal_pending(th))
 		{
 			printk("Checking thread receive a SIGKILL, killed\n");
+			is_exit = 1;
 			break;
 		}
+		#endif
 		
 		if(tsk)
 		{
-			/* naive approach, if reverser starts process from gdb it would hangs */
-			//thread->debugreg6 = 0;
-
-			/* just kill the target process */
 			if(thread->debugreg6 != 0)
 			{
-				struct pid *p = tsk->thread_pid;
 				printk("Found hardware breakpoints, kill the process %d\n", tsk->pid);
-				kill_pid(p, SIGKILL, 1);
+				kill_pid(tsk->thread_pid, SIGKILL, 1);
+				is_exit = 1;
 				break;
 			}
 		}
 		else
 		{
 			printk("Target task no longer exists, shut the checking thread\n");
+			is_exit = 1;
 			break;
 		}
 	}
 
-	do_exit(0);
 	return 0;
 }
 
 static int chk_hbreak_init(void)
 {
 	struct task_struct *tsk = pid_task(find_vpid(my_pid), PIDTYPE_PID);
+
+	if(NULL == tsk)
+	{
+		is_exit = 1;
+		return 0;
+	}
 
 	th = kthread_run(callback_fn, (void*)tsk, "chk_hbreak");
 	if(NULL == th)
@@ -75,9 +82,9 @@ static int chk_hbreak_init(void)
 
 static void chk_hbreak_exit(void)
 {
-	if(th)
+	if(!is_exit)
 	{
-		kill_pid(th->thread_pid, SIGKILL, 1);
+		//kill_pid(th->thread_pid, SIGKILL, 1);
 		kthread_stop(th);
 	}
 }
