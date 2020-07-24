@@ -3,6 +3,7 @@
 #include <linux/kernel.h>
 #include <linux/kthread.h>
 #include <linux/sched/signal.h>
+#include <linux/delay.h>
 
 static long my_pid = 0;
 module_param(my_pid, long, 0);
@@ -54,6 +55,8 @@ static int callback_fn(void *data)
 			is_exit = 1;
 			break;
 		}
+
+		ssleep(1);
 	}
 
 	return 0;
